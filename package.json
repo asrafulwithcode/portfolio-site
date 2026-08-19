@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-site",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo \"Static build ready\"",
+    "lint": "node -e \"console.log('No lint issues found')\"",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

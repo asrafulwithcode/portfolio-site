@@ -1,0 +1,6 @@
+{
+  "name": "SK Asraful Haque Portfolio",
+  "description": "Portfolio website of SK Asraful Haque, BCA student at Swami Vivekananda University.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
