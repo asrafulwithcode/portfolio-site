@@ -438,7 +438,7 @@
     }
 
     /* ==========================================================================
-       HERO SECTION & INTERACTIVE BLACK HOLE SINGULARITY
+       HERO SECTION & THE LIVING DIGITAL PORTAL
        ========================================================================== */
     .hero-section {
       min-height: 100vh;
@@ -448,7 +448,7 @@
       padding-bottom: 4.5rem;
       position: relative;
       overflow: hidden;
-      background: radial-gradient(circle at 75% 50%, rgba(10, 17, 40, 0.4) 0%, rgba(3, 7, 18, 0.95) 70%);
+      background: radial-gradient(circle at 72% 50%, rgba(14, 25, 55, 0.45) 0%, rgba(3, 7, 18, 0.98) 75%);
     }
 
     #heroParticleCanvas {
@@ -459,7 +459,7 @@
       height: 100%;
       z-index: 1;
       pointer-events: auto;
-      opacity: 0.95;
+      opacity: 0.98;
       cursor: crosshair;
     }
 
@@ -484,13 +484,20 @@
       padding: 0.45rem 1.15rem;
       border-radius: var(--radius-full);
       background: rgba(6, 182, 212, 0.08);
-      border: 1px solid rgba(6, 182, 212, 0.3);
+      border: 1px solid rgba(6, 182, 212, 0.32);
       color: var(--cyan-light);
       font-size: 0.835rem;
       font-weight: 600;
       margin-bottom: 1.5rem;
-      box-shadow: 0 0 18px rgba(6, 182, 212, 0.15);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-status-pill:hover {
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow: 0 0 28px rgba(6, 182, 212, 0.35);
     }
 
     .pulse-dot {
@@ -533,7 +540,7 @@
     }
 
     .hero-name:hover {
-      text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+      text-shadow: 0 0 32px rgba(56, 189, 248, 0.45);
     }
 
     .hero-badge {
@@ -591,6 +598,7 @@
       box-shadow: 0 6px 22px rgba(6, 182, 212, 0.35);
       position: relative;
       overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .btn-primary:hover {
@@ -619,6 +627,8 @@
       font-weight: 600;
       font-size: 0.95rem;
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .btn-secondary:hover {
@@ -650,20 +660,20 @@
       color: var(--cyan);
     }
 
-    /* 3D Interactive Floating Code Window */
+    /* 3D Interactive Floating Code Window with Liquid Glass Effect */
     .hero-visual {
       position: relative;
-      perspective: 1000px;
+      perspective: 1200px;
     }
 
     .visual-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(6, 182, 212, 0.35);
+      background: rgba(6, 13, 31, 0.76);
+      border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--shadow-card), 0 0 35px -5px rgba(6, 182, 212, 0.25), 0 0 60px -15px rgba(129, 140, 248, 0.2);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      box-shadow: var(--shadow-card), 0 0 35px -5px rgba(6, 182, 212, 0.3), 0 0 70px -15px rgba(129, 140, 248, 0.22), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
       transition: transform 0.2s var(--ease-spring), border-color 0.35s ease, box-shadow 0.35s ease;
       transform-style: preserve-3d;
       will-change: transform;
@@ -672,8 +682,8 @@
     }
 
     .visual-card:hover {
-      border-color: rgba(56, 189, 248, 0.6);
-      box-shadow: var(--shadow-card), 0 0 45px -5px rgba(6, 182, 212, 0.4), 0 0 80px -10px rgba(129, 140, 248, 0.3);
+      border-color: rgba(56, 189, 248, 0.65);
+      box-shadow: var(--shadow-card), 0 0 50px -5px rgba(6, 182, 212, 0.45), 0 0 90px -10px rgba(129, 140, 248, 0.32), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25);
     }
 
     .visual-card::before {
@@ -685,13 +695,13 @@
       height: 200%;
       background: linear-gradient(
         45deg,
-        transparent 45%,
-        rgba(255, 255, 255, 0.05) 50%,
-        transparent 55%
+        transparent 42%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 58%
       );
       transform: rotate(30deg);
       pointer-events: none;
-      animation: scanLight 8s infinite linear;
+      animation: scanLight 7.5s infinite linear;
     }
 
     @keyframes scanLight {
@@ -2783,46 +2793,133 @@
         });
       }
 
-      // 4. MAIN SIGNATURE EFFECT: INTERACTIVE BLACK HOLE / DIGITAL SINGULARITY
+      // 4. MAIN SIGNATURE EFFECT: "THE LIVING DIGITAL PORTAL"
       const heroCanvas = document.getElementById('heroParticleCanvas');
       if (heroCanvas) {
         const ctx = heroCanvas.getContext('2d');
         const heroSection = document.getElementById('home');
+        const codeCardEl = document.getElementById('heroTiltCard');
+        
         let width = (heroCanvas.width = heroSection ? heroSection.offsetWidth : window.innerWidth);
         let height = (heroCanvas.height = heroSection ? heroSection.offsetHeight : window.innerHeight);
 
         let mouseX = -1000;
         let mouseY = -1000;
-        let smoothMouseX = width * 0.72;
-        let smoothMouseY = height * 0.5;
         let isHeroHovered = false;
         let scrollY = 0;
         let isVisible = true;
 
-        // Black hole singularity center configuration
-        function getSingularityPos() {
+        // Portal center positioning (desktop aligns with right visual card, mobile centers)
+        function getPortalCenter() {
           const isMobile = window.innerWidth <= 768;
-          const baseX = isMobile ? width * 0.5 : width * 0.72;
-          const baseY = isMobile ? height * 0.42 : height * 0.50;
-          return { baseX, baseY };
+          if (codeCardEl && !isMobile) {
+            const cardRect = codeCardEl.getBoundingClientRect();
+            const secRect = heroSection.getBoundingClientRect();
+            return {
+              baseX: (cardRect.left + cardRect.width / 2) - secRect.left,
+              baseY: (cardRect.top + cardRect.height / 2) - secRect.top
+            };
+          }
+          return {
+            baseX: isMobile ? width * 0.5 : width * 0.72,
+            baseY: isMobile ? height * 0.44 : height * 0.50
+          };
         }
 
-        let { baseX: targetCenterX, baseY: targetCenterY } = getSingularityPos();
+        let { baseX: targetCenterX, baseY: targetCenterY } = getPortalCenter();
         let curCenterX = targetCenterX;
         let curCenterY = targetCenterY;
 
-        // Gravitational shockwave pulses
+        // Expanding digital shockwaves on click
         const shockwaves = [];
-
         function addShockwave(x, y) {
           shockwaves.push({
             x,
             y,
-            radius: 10,
-            maxRadius: Math.max(width, height) * 0.65,
-            opacity: 0.8,
-            speed: 6.5,
+            radius: 12,
+            maxRadius: Math.max(width, height) * 0.7,
+            opacity: 0.85,
+            speed: 7.2,
             color: 'rgba(6, 182, 212, '
+          });
+        }
+
+        // "Look Again" Rare Ambient Event System (every 16-28 seconds)
+        let rareEventActive = false;
+        let rareEventProgress = 0;
+        let rareEventIntensity = 0;
+        let nextRareEventTime = 18 + Math.random() * 10;
+        let rareEventTimer = 0;
+        let rareEventType = 0; // 0: Harmonic Alignment, 1: Geometric Mandala Pulse, 2: Quantum Surge
+
+        // Traveling ring energy sparks
+        const ringSparks = [
+          { ringR: 90, angle: 0, speed: 0.045, size: 2.8, color: 'rgba(56, 189, 248, ' },
+          { ringR: 165, angle: Math.PI * 0.6, speed: -0.032, size: 3.2, color: 'rgba(6, 182, 212, ' },
+          { ringR: 245, angle: Math.PI * 1.3, speed: 0.022, size: 2.5, color: 'rgba(129, 140, 248, ' },
+          { ringR: 320, angle: Math.PI * 0.2, speed: -0.018, size: 2.2, color: 'rgba(52, 211, 153, ' }
+        ];
+
+        // Tether energy packets traveling between portal and code card
+        const tetherPhotons = [];
+        for (let i = 0; i < 6; i++) {
+          tetherPhotons.push({
+            tetherIndex: i % 4,
+            progress: Math.random(),
+            speed: 0.008 + Math.random() * 0.012,
+            size: 2.2 + Math.random() * 1.5,
+            color: i % 2 === 0 ? 'rgba(56, 189, 248, ' : 'rgba(52, 211, 153, '
+          });
+        }
+
+        // Floating digital glyphs orbiting outer portal horizon
+        const glyphChars = ['01', 'λ', '◈', '0x7F', '::', '⟨⟩', '∆', '∑', '⚡', 'fn()'];
+        const isMobileDevice = window.innerWidth <= 768;
+        const glyphs = [];
+        const glyphCount = isMobileDevice ? 5 : 12;
+        for (let i = 0; i < glyphCount; i++) {
+          glyphs.push({
+            char: glyphChars[i % glyphChars.length],
+            r: 180 + Math.random() * (isMobileDevice ? 110 : 200),
+            angle: (i / glyphCount) * Math.PI * 2,
+            speed: (Math.random() > 0.5 ? 1 : -1) * (0.003 + Math.random() * 0.005),
+            alpha: 0.35 + Math.random() * 0.45,
+            size: 9 + Math.floor(Math.random() * 4)
+          });
+        }
+
+        // Particle system for accretion disk and orbiting matter
+        const particleCount = isMobileDevice ? 90 : 260;
+        const particles = [];
+
+        for (let i = 0; i < particleCount; i++) {
+          const orbitR = 40 + Math.pow(Math.random(), 1.55) * (isMobileDevice ? 200 : 350);
+          particles.push({
+            r: orbitR,
+            baseR: orbitR,
+            angle: Math.random() * Math.PI * 2,
+            speed: (0.85 / Math.sqrt(orbitR * 0.045)) * (0.016 + Math.random() * 0.012),
+            eccentricity: 0.26 + Math.random() * 0.14,
+            tiltAngle: -0.38 + (Math.random() - 0.5) * 0.18,
+            size: Math.random() * 2.2 + 0.8,
+            boost: 0,
+            isInfalling: Math.random() < 0.22,
+            colorType: Math.random() < 0.45 ? 'cyan' : (Math.random() < 0.75 ? 'violet' : 'emerald'),
+            alpha: 0.35 + Math.random() * 0.65,
+            z: Math.random() * 2 - 1
+          });
+        }
+
+        // Subtle background stars / cosmic ambient dust
+        const starCount = isMobileDevice ? 30 : 65;
+        const stars = [];
+        for (let i = 0; i < starCount; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 1.4 + 0.5,
+            alpha: Math.random() * 0.55 + 0.2,
+            speed: Math.random() * 0.2 + 0.05
           });
         }
 
@@ -2831,7 +2928,7 @@
           if (heroSection) {
             width = heroCanvas.width = heroSection.offsetWidth;
             height = heroCanvas.height = heroSection.offsetHeight;
-            const pos = getSingularityPos();
+            const pos = getPortalCenter();
             targetCenterX = pos.baseX;
             targetCenterY = pos.baseY;
           }
@@ -2861,65 +2958,50 @@
             const clickY = e.clientY - rect.top;
             addShockwave(clickX, clickY);
 
-            // Temporarily accelerate orbiting particles
+            // Temporarily accelerate portal rotation and orbiting particles
             particles.forEach(p => {
-              p.boost = Math.min(p.boost + 2.4, 4.0);
+              p.boost = Math.min(p.boost + 2.6, 4.2);
             });
-          });
-        }
-
-        // Particle system for accretion disk and orbiting matter
-        const isMobileDevice = window.innerWidth <= 768;
-        const particleCount = isMobileDevice ? 85 : 240;
-        const particles = [];
-
-        for (let i = 0; i < particleCount; i++) {
-          const orbitR = 45 + Math.pow(Math.random(), 1.6) * (isMobileDevice ? 210 : 340);
-          particles.push({
-            r: orbitR,
-            baseR: orbitR,
-            angle: Math.random() * Math.PI * 2,
-            // Keplerian velocity: v ~ 1 / sqrt(r)
-            speed: (0.9 / Math.sqrt(orbitR * 0.05)) * (0.018 + Math.random() * 0.012),
-            eccentricity: 0.28 + Math.random() * 0.12,
-            tiltAngle: -0.42 + (Math.random() - 0.5) * 0.15, // accretion disk tilt
-            size: Math.random() * 2.2 + 0.8,
-            boost: 0,
-            isInfalling: Math.random() < 0.18,
-            colorType: Math.random() < 0.5 ? 'cyan' : (Math.random() < 0.5 ? 'violet' : 'emerald'),
-            alpha: 0.35 + Math.random() * 0.65,
-            z: Math.random() * 2 - 1
-          });
-        }
-
-        // Background cosmic dust particles
-        const starCount = isMobileDevice ? 30 : 70;
-        const stars = [];
-        for (let i = 0; i < starCount; i++) {
-          stars.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            size: Math.random() * 1.5 + 0.5,
-            alpha: Math.random() * 0.6 + 0.2,
-            speed: Math.random() * 0.2 + 0.05
+            ringSparks.forEach(s => {
+              s.speed *= 1.8;
+            });
           });
         }
 
         let time = 0;
 
-        function renderSingularity() {
+        function renderPortal() {
           if (!isVisible) {
-            requestAnimationFrame(renderSingularity);
+            requestAnimationFrame(renderPortal);
             return;
           }
 
           time += 0.016;
+          rareEventTimer += 0.016;
 
-          // Parallax towards mouse or smooth return
-          const pos = getSingularityPos();
+          // Check for rare ambient "Look Again" event trigger
+          if (!rareEventActive && rareEventTimer >= nextRareEventTime) {
+            rareEventActive = true;
+            rareEventProgress = 0;
+            rareEventType = Math.floor(Math.random() * 3);
+            rareEventTimer = 0;
+            nextRareEventTime = 18 + Math.random() * 12;
+          }
+
+          if (rareEventActive) {
+            rareEventProgress += 0.018; // ~1.8 second duration
+            rareEventIntensity = Math.sin(rareEventProgress * Math.PI); // smooth bell curve 0 -> 1 -> 0
+            if (rareEventProgress >= 1) {
+              rareEventActive = false;
+              rareEventIntensity = 0;
+            }
+          }
+
+          // Parallax 3D position tracking
+          const pos = getPortalCenter();
           if (isHeroHovered && mouseX > 0 && mouseY > 0) {
-            const offsetX = (mouseX - pos.baseX) * 0.05;
-            const offsetY = (mouseY - pos.baseY) * 0.05;
+            const offsetX = (mouseX - pos.baseX) * 0.045;
+            const offsetY = (mouseY - pos.baseY) * 0.045;
             targetCenterX = pos.baseX + offsetX;
             targetCenterY = pos.baseY + offsetY;
           } else {
@@ -2932,7 +3014,7 @@
 
           ctx.clearRect(0, 0, width, height);
 
-          // 1. Draw subtle background cosmic stars
+          // 1. Background Ambient Cosmic Dust
           for (let i = 0; i < stars.length; i++) {
             const s = stars[i];
             s.y -= s.speed;
@@ -2940,50 +3022,214 @@
 
             ctx.beginPath();
             ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(148, 163, 184, ${s.alpha * 0.45})`;
+            ctx.fillStyle = `rgba(148, 163, 184, ${s.alpha * 0.4})`;
             ctx.fill();
           }
 
-          // 2. Gravitational Lensing & Ambient Accretion Glow (Multi-layered Aura)
-          const diskTilt = -0.42 + Math.sin(time * 0.5 + scrollY * 0.001) * 0.05;
-          const outerAuraR = isMobileDevice ? 220 : 340;
-          const innerCoreR = isMobileDevice ? 32 : 44;
+          // 2. The Living Digital Portal: Layered Transparent Energy Rings & Infinite Depth
+          const diskTilt = -0.38 + Math.sin(time * 0.4 + scrollY * 0.0008) * 0.06;
+          const outerRadius = isMobileDevice ? 210 : 340;
+          const innerCoreR = isMobileDevice ? 34 : 48;
 
-          // Outer gravitational aura
-          const auraGrad = ctx.createRadialGradient(curCenterX, curCenterY, innerCoreR, curCenterX, curCenterY, outerAuraR);
-          auraGrad.addColorStop(0, 'rgba(6, 182, 212, 0.28)');
-          auraGrad.addColorStop(0.25, 'rgba(56, 189, 248, 0.16)');
-          auraGrad.addColorStop(0.55, 'rgba(129, 140, 248, 0.08)');
-          auraGrad.addColorStop(0.85, 'rgba(16, 185, 129, 0.03)');
+          // Deep Glowing Portal Aura Gradient
+          const auraGrad = ctx.createRadialGradient(curCenterX, curCenterY, innerCoreR * 0.8, curCenterX, curCenterY, outerRadius);
+          auraGrad.addColorStop(0, 'rgba(6, 182, 212, 0.32)');
+          auraGrad.addColorStop(0.22, 'rgba(56, 189, 248, 0.20)');
+          auraGrad.addColorStop(0.52, 'rgba(129, 140, 248, 0.10)');
+          auraGrad.addColorStop(0.82, 'rgba(16, 185, 129, 0.04)');
           auraGrad.addColorStop(1, 'rgba(3, 7, 18, 0)');
 
           ctx.save();
           ctx.translate(curCenterX, curCenterY);
           ctx.rotate(diskTilt);
-          ctx.scale(1, 0.42); // Elliptical perspective of accretion disk
+          ctx.scale(1, 0.44); // 3D Perspective Elliptical Plane
+
           ctx.beginPath();
-          ctx.arc(0, 0, outerAuraR, 0, Math.PI * 2);
+          ctx.arc(0, 0, outerRadius, 0, Math.PI * 2);
           ctx.fillStyle = auraGrad;
           ctx.fill();
 
-          // Accretion disk inner hot rings
-          const hotDiskGrad = ctx.createRadialGradient(0, 0, innerCoreR + 4, 0, 0, innerCoreR * 2.8);
-          hotDiskGrad.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
-          hotDiskGrad.addColorStop(0.2, 'rgba(56, 189, 248, 0.55)');
-          hotDiskGrad.addColorStop(0.6, 'rgba(6, 182, 212, 0.25)');
-          hotDiskGrad.addColorStop(1, 'transparent');
-
+          // Organic Morphing Contour Waves
           ctx.beginPath();
-          ctx.arc(0, 0, innerCoreR * 2.8, 0, Math.PI * 2);
-          ctx.fillStyle = hotDiskGrad;
-          ctx.fill();
+          for (let a = 0; a < Math.PI * 2; a += 0.12) {
+            const noise = Math.sin(a * 4 + time * 1.5) * 6 + Math.cos(a * 2 - time) * 4;
+            const waveR = innerCoreR * 1.7 + noise;
+            const wx = Math.cos(a) * waveR;
+            const wy = Math.sin(a) * waveR;
+            if (a === 0) ctx.moveTo(wx, wy);
+            else ctx.lineTo(wx, wy);
+          }
+          ctx.closePath();
+          ctx.strokeStyle = `rgba(56, 189, 248, ${0.35 + rareEventIntensity * 0.4})`;
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
+
+          // Ring 1: Inner High-Speed Segmented Resonator
+          const r1 = innerCoreR * 1.65;
+          ctx.save();
+          ctx.rotate(time * 0.9);
+          ctx.beginPath();
+          ctx.setLineDash([8, 12]);
+          ctx.arc(0, 0, r1, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(6, 182, 212, 0.65)';
+          ctx.lineWidth = 1.6;
+          ctx.stroke();
           ctx.restore();
 
-          // 3. Render Shockwaves / Gravitational Waves
+          // Ring 2: Primary Quantum Flow Stream (Counter-Rotating)
+          const r2 = innerCoreR * 2.85;
+          ctx.save();
+          ctx.rotate(-time * 0.5);
+          ctx.beginPath();
+          ctx.arc(0, 0, r2, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(129, 140, 248, 0.4)';
+          ctx.lineWidth = 1.8;
+          ctx.stroke();
+          // Tick marks along Ring 2
+          for (let i = 0; i < 12; i++) {
+            const ang = (i / 12) * Math.PI * 2;
+            const tx1 = Math.cos(ang) * (r2 - 4);
+            const ty1 = Math.sin(ang) * (r2 - 4);
+            const tx2 = Math.cos(ang) * (r2 + 4);
+            const ty2 = Math.sin(ang) * (r2 + 4);
+            ctx.beginPath();
+            ctx.moveTo(tx1, ty1);
+            ctx.lineTo(tx2, ty2);
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+          }
+          ctx.restore();
+
+          // Ring 3: Outer Harmonic Orbit Ring
+          const r3 = innerCoreR * 4.4;
+          ctx.save();
+          ctx.rotate(time * 0.25);
+          ctx.beginPath();
+          ctx.setLineDash([4, 18]);
+          ctx.arc(0, 0, r3, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(52, 211, 153, 0.45)';
+          ctx.lineWidth = 1.3;
+          ctx.stroke();
+          ctx.restore();
+
+          // Rare Event: Geometric Resonance Mandala Pulse
+          if (rareEventIntensity > 0.05) {
+            ctx.save();
+            ctx.rotate(time * 1.5);
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+              const theta = (i / 8) * Math.PI * 2;
+              const mx = Math.cos(theta) * (innerCoreR * (2 + rareEventIntensity * 3));
+              const my = Math.sin(theta) * (innerCoreR * (2 + rareEventIntensity * 3));
+              if (i === 0) ctx.moveTo(mx, my);
+              else ctx.lineTo(mx, my);
+            }
+            ctx.closePath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${rareEventIntensity * 0.75})`;
+            ctx.lineWidth = 2;
+            ctx.shadowColor = 'rgba(6, 182, 212, 0.9)';
+            ctx.shadowBlur = 18;
+            ctx.stroke();
+            ctx.restore();
+          }
+
+          ctx.restore(); // Exit perspective plane
+
+          // 3. Render Luminous Ring Sparks & Pulses
+          for (let i = 0; i < ringSparks.length; i++) {
+            const sp = ringSparks[i];
+            sp.angle += sp.speed * (1 + (rareEventIntensity * 1.5));
+            if (Math.abs(sp.speed) > 0.05) sp.speed *= 0.99; // ease back if boosted
+
+            const sCos = Math.cos(diskTilt);
+            const sSin = Math.sin(diskTilt);
+            const sX = sp.ringR * Math.cos(sp.angle);
+            const sY = sp.ringR * 0.44 * Math.sin(sp.angle);
+
+            const spX = curCenterX + (sX * sCos - sY * sSin);
+            const spY = curCenterY + (sX * sSin + sY * sCos);
+
+            ctx.beginPath();
+            ctx.arc(spX, spY, sp.size * (1 + rareEventIntensity * 0.8), 0, Math.PI * 2);
+            ctx.fillStyle = sp.color + '0.9)';
+            ctx.shadowColor = sp.color + '1)';
+            ctx.shadowBlur = 12;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+
+          // 4. Render Orbiting Floating Digital Glyphs
+          ctx.font = '10px monospace';
+          for (let i = 0; i < glyphs.length; i++) {
+            const g = glyphs[i];
+            g.angle += g.speed * (1 + rareEventIntensity);
+
+            const gCos = Math.cos(diskTilt);
+            const gSin = Math.sin(diskTilt);
+            const gx = g.r * Math.cos(g.angle);
+            const gy = g.r * 0.44 * Math.sin(g.angle);
+
+            const gpx = curCenterX + (gx * gCos - gy * gSin);
+            const gpy = curCenterY + (gx * gSin + gy * gCos);
+
+            ctx.fillStyle = `rgba(56, 189, 248, ${g.alpha * (0.6 + 0.4 * Math.sin(g.angle))})`;
+            ctx.fillText(g.char, gpx, gpy);
+          }
+
+          // 5. Dynamic Energy Tethers (Filaments) Connecting Portal to Code Card
+          if (codeCardEl && !isMobileDevice) {
+            const cardRect = codeCardEl.getBoundingClientRect();
+            const secRect = heroSection.getBoundingClientRect();
+            
+            const cardAnchors = [
+              { x: cardRect.left - secRect.left + 15, y: cardRect.top - secRect.top + 20 },
+              { x: cardRect.right - secRect.left - 15, y: cardRect.top - secRect.top + 20 },
+              { x: cardRect.left - secRect.left + 15, y: cardRect.bottom - secRect.top - 20 },
+              { x: cardRect.right - secRect.left - 15, y: cardRect.bottom - secRect.top - 20 }
+            ];
+
+            for (let i = 0; i < cardAnchors.length; i++) {
+              const anchor = cardAnchors[i];
+              const portalAngle = (i / 4) * Math.PI * 2 + time * 0.2;
+              const pOrigX = curCenterX + Math.cos(portalAngle) * (innerCoreR * 1.5);
+              const pOrigY = curCenterY + Math.sin(portalAngle) * (innerCoreR * 1.5 * 0.44);
+
+              // Control points for gentle Bezier wave curve
+              const cpX = (pOrigX + anchor.x) / 2 + Math.sin(time * 2 + i) * 18;
+              const cpY = (pOrigY + anchor.y) / 2 + Math.cos(time * 2 + i) * 14;
+
+              ctx.beginPath();
+              ctx.moveTo(pOrigX, pOrigY);
+              ctx.quadraticCurveTo(cpX, cpY, anchor.x, anchor.y);
+              ctx.strokeStyle = `rgba(6, 182, 212, ${0.18 + 0.12 * Math.sin(time * 3 + i) + rareEventIntensity * 0.35})`;
+              ctx.lineWidth = 1.1;
+              ctx.stroke();
+
+              // Photon energy packets propagating from portal to card
+              const pht = tetherPhotons[i % tetherPhotons.length];
+              pht.progress += pht.speed * (1 + rareEventIntensity * 2);
+              if (pht.progress > 1) pht.progress = 0;
+
+              const t = pht.progress;
+              const phtX = (1 - t) * (1 - t) * pOrigX + 2 * (1 - t) * t * cpX + t * t * anchor.x;
+              const phtY = (1 - t) * (1 - t) * pOrigY + 2 * (1 - t) * t * cpY + t * t * anchor.y;
+
+              ctx.beginPath();
+              ctx.arc(phtX, phtY, pht.size, 0, Math.PI * 2);
+              ctx.fillStyle = pht.color + '0.85)';
+              ctx.shadowColor = pht.color + '1)';
+              ctx.shadowBlur = 8;
+              ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+          }
+
+          // 6. Expanding Click Shockwaves
           for (let i = shockwaves.length - 1; i >= 0; i--) {
             const sw = shockwaves[i];
             sw.radius += sw.speed;
-            sw.opacity -= 0.015;
+            sw.opacity -= 0.016;
 
             if (sw.opacity <= 0 || sw.radius >= sw.maxRadius) {
               shockwaves.splice(i, 1);
@@ -2994,38 +3240,35 @@
             ctx.beginPath();
             ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
             ctx.strokeStyle = sw.color + sw.opacity + ')';
-            ctx.lineWidth = 2.5;
-            ctx.shadowColor = 'rgba(6, 182, 212, 0.6)';
-            ctx.shadowBlur = 12;
+            ctx.lineWidth = 2.4;
+            ctx.shadowColor = 'rgba(6, 182, 212, 0.7)';
+            ctx.shadowBlur = 14;
             ctx.stroke();
             ctx.restore();
           }
 
-          // 4. Orbiting Particles with Keplerian Physics & Relativistic Beaming
+          // 7. Orbiting Relativistic Matter & Infalling Cascades
           particles.sort((a, b) => a.z - b.z);
 
           for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
-
-            // Velocity update
-            const currentSpeed = p.speed * (1 + p.boost);
+            const currentSpeed = p.speed * (1 + p.boost + rareEventIntensity * 1.5);
             p.angle += currentSpeed;
             if (p.boost > 0) p.boost *= 0.96;
 
-            // Infalling matter simulation
+            // Infalling matter simulation towards singularity core
             if (p.isInfalling) {
-              p.r -= 0.16;
-              if (p.r < innerCoreR + 2) {
-                p.r = outerAuraR * (0.8 + Math.random() * 0.2);
+              p.r -= 0.16 * (1 + rareEventIntensity * 1.2);
+              if (p.r < innerCoreR + 4) {
+                p.r = outerRadius * (0.8 + Math.random() * 0.2);
                 p.angle = Math.random() * Math.PI * 2;
               }
             }
 
             // Elliptical coordinate calculation
             const rx = p.r * (1 + p.eccentricity * Math.cos(p.angle));
-            const ry = p.r * 0.42 * (1 + p.eccentricity * Math.cos(p.angle));
+            const ry = p.r * 0.44 * (1 + p.eccentricity * Math.cos(p.angle));
 
-            // Rotate into disk inclination
             const cosT = Math.cos(p.tiltAngle);
             const sinT = Math.sin(p.tiltAngle);
             const localX = rx * Math.cos(p.angle);
@@ -3039,14 +3282,14 @@
               const dx = mouseX - px;
               const dy = mouseY - py;
               const dist = Math.sqrt(dx * dx + dy * dy);
-              if (dist < 180 && dist > 10) {
-                const force = (1 - dist / 180) * 8;
+              if (dist < 170 && dist > 10) {
+                const force = (1 - dist / 170) * 7.5;
                 px += (dx / dist) * force;
                 py += (dy / dist) * force;
               }
             }
 
-            // Doppler beaming: particles on front side moving towards viewer appear brighter
+            // Relativistic Doppler beaming on front facing arc
             const doppler = 0.5 + 0.5 * Math.sin(p.angle);
             let pColor = `rgba(6, 182, 212, ${p.alpha * doppler})`;
             if (p.colorType === 'violet') {
@@ -3059,7 +3302,7 @@
             ctx.arc(px, py, p.size * (0.8 + doppler * 0.4), 0, Math.PI * 2);
             ctx.fillStyle = pColor;
             ctx.shadowColor = pColor;
-            ctx.shadowBlur = 6;
+            ctx.shadowBlur = 5;
             ctx.fill();
             ctx.shadowBlur = 0;
 
@@ -3067,48 +3310,47 @@
             if (i % 3 === 0 && i + 1 < particles.length) {
               const pNext = particles[i + 1];
               const nrx = pNext.r * (1 + pNext.eccentricity * Math.cos(pNext.angle));
-              const nry = pNext.r * 0.42 * (1 + pNext.eccentricity * Math.cos(pNext.angle));
+              const nry = pNext.r * 0.44 * (1 + pNext.eccentricity * Math.cos(pNext.angle));
               const nlocalX = nrx * Math.cos(pNext.angle);
               const nlocalY = nry * Math.sin(pNext.angle);
               const npx = curCenterX + (nlocalX * cosT - nlocalY * sinT);
               const npy = curCenterY + (nlocalX * sinT + nlocalY * cosT);
 
               const lineDist = Math.hypot(px - npx, py - npy);
-              if (lineDist < 55) {
+              if (lineDist < 52) {
                 ctx.beginPath();
                 ctx.moveTo(px, py);
                 ctx.lineTo(npx, npy);
-                ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - lineDist / 55) * 0.25})`;
+                ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - lineDist / 52) * 0.24})`;
                 ctx.lineWidth = 0.8;
                 ctx.stroke();
               }
             }
           }
 
-          // 5. Relativistic Photon Sphere & Event Horizon (Pure Black Singularity Core)
+          // 8. Relativistic Photon Horizon & Mysterious Dark Core
           ctx.save();
-          // Photon sphere glowing ring
           ctx.beginPath();
           ctx.arc(curCenterX, curCenterY, innerCoreR + 2, 0, Math.PI * 2);
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
-          ctx.lineWidth = 2.2;
-          ctx.shadowColor = 'rgba(6, 182, 212, 0.9)';
-          ctx.shadowBlur = 18;
+          ctx.strokeStyle = `rgba(255, 255, 255, ${0.85 + rareEventIntensity * 0.15})`;
+          ctx.lineWidth = 2.4;
+          ctx.shadowColor = 'rgba(6, 182, 212, 0.95)';
+          ctx.shadowBlur = 20;
           ctx.stroke();
 
-          // Pure Pitch-Black Singularity Event Horizon Core
+          // Infinite Depth Portal Core
           ctx.beginPath();
           ctx.arc(curCenterX, curCenterY, innerCoreR, 0, Math.PI * 2);
-          ctx.fillStyle = '#010409';
+          ctx.fillStyle = '#01040a';
           ctx.shadowColor = 'rgba(0, 0, 0, 1)';
-          ctx.shadowBlur = 24;
+          ctx.shadowBlur = 25;
           ctx.fill();
           ctx.restore();
 
-          requestAnimationFrame(renderSingularity);
+          requestAnimationFrame(renderPortal);
         }
 
-        renderSingularity();
+        renderPortal();
 
         // Pause canvas when out of view
         if ('IntersectionObserver' in window && heroSection) {
@@ -3126,9 +3368,6 @@
 
         // 4b. Gravitational Magnetic Hero Text Effect
         const heroNameEl = document.querySelector('.hero-name');
-        const heroSalutationEl = document.querySelector('.hero-salutation');
-        const heroBadgeEl = document.querySelector('.hero-badge');
-
         if (heroSection && window.innerWidth > 768) {
           heroSection.addEventListener('mousemove', (e) => {
             const rect = heroSection.getBoundingClientRect();
